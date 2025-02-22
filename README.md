@@ -31,6 +31,40 @@ The Expense Mate is a web-based application that allows users to manage their in
 - **Werkzeug**: A WSGI utility library for password hashing.
 
 
+## Installation
+
+Follow the steps below to get the application running on your local machine:
+
+1. Clone this repository:
+
+    ```bash
+    git clone https://github.com/vansaj0701/Expense-Mate.git
+    cd expense-tracker
+    ```
+
+2. Install the required dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+5. Set up the database:
+
+    The database (`expense.db`) will be automatically created when you first run the app.
+
+6. Run the application:
+
+    ```bash
+    flask run
+    ```
+
+7. Open the app in your browser at:
+
+    ```
+    http://127.0.0.1:5000/
+    ```
+
+
 ## Usage
 
 1. **Register**: Go to `/register` and create an account by filling out your name, email, total income, and password.
