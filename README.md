@@ -6,10 +6,10 @@ The Expense Mate is a web-based application that allows users to manage their in
 ## Table of Contents
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Database Schema](#database-schema)
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
 - [Security](#security)
 - [Contributing](#contributing)
 
