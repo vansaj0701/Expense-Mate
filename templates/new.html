@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+        <link rel="stylesheet" href="./static/styles.css" />
+        <title>Expense Mate</title>
+    </head>
+
+    <body>
+
+    <div class="container">
+      <form action="/new" method="POST">
+        <h1>Add</h1>
+
+        <div class="form-floating">
+          <input type="number" class="form-control" name="amount" placeholder="name@example.com">
+          <label for="amount-input">Amount</label>
+        </div>
+        <div class="form-floating">
+          <select class="form-select" name="type">
+            <option value="travel">Travel</option>
+            <option value="food">Food</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="type-input">Type</label>
+        </div>
+        <div class="form-floating">
+          <input type="date" class="form-control" name="date" placeholder="Date">
+          <label for="date-input">Date</label>
+        </div>
+
+        <button class="btn btn-primary w-100 py-2" type="submit">Add</button>
+      </form>
+    </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+
+    <head>
+        <meta charset="UTF-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+        <link rel="stylesheet" href="./static/styles.css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>Expense Mate</title>
+    </head>
+
+    <body>
+
+        <div class="container-grid">
+            <div class="main">
+                <table class="main-table">
+                    <tr class="total-income">
+                        <td>Total Income</td>
+                        <td>{{ total_income }}</td>
+                    </tr>
+                    <tr>
+                        <td>Travel Expense</td>
+                        <td>{{ expenses["travel"] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Food Expense</td>
+                        <td>{{ expenses["food"] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other Expenses</td>
+                        <td>{{ expenses["other"] }}</td>
+                    </tr>
+                    <tr class="total-expense">
+                        <td>Total Expense</td>
+                        <td>{{ total_expense }}</td>
+                    </tr>
+                    <tr class="current-balance">
+                        <td>Current Balance</td>
+                        <td>{{ current_balance }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="history">
+                <table class="history-table">
+                    <tr class="history-head">
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Date Added</th>
+                    </tr>
+
+                    {% for data in history %}
+                        <tr>
+                            <td>{{ data[0] }}</td>
+                            <td>{{ data[1] }}</td>
+                            <td>{{ data[2] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="menu">
+                <a href="./new"><button class="new-button">New</button></a>
+                <button class="edit-amount-button">Edit Starting Amount</button>
+            </div>
+            <div class="stats">
+                <div class="pie">
+                    <canvas class="pie-chart"></canvas>
+                </div>
+
+                <div class="bar">
+                    <canvas id="myBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var pie = document.getElementsByClassName('pie-chart')[0].getContext('2d');
+            var pieChart = new Chart(pie, {
+                type: 'pie',
+                data: {
+                    labels: ["travel", "food", "other"],
+                    datasets: [{
+                        data: {{ [expenses["travel"], expenses["food"], expenses["other"]] }},
+                        backgroundColor: ['#FF0000', '#0000FF', '#FFFF00'],
+                        borderColor: ['#FF0000', '#0000FF', '#FFFF00'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'left',
+                            display: true
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            top: 0
+                        }
+                    }
+                }
+            });
+
+
+            var barCtx = document.getElementById('myBarChart').getContext('2d');
+            var pieChart = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: ["Total Income", "Total Expense", "Currrent Balance"],
+                    datasets: [{
+                        data: {{ [total_income, total_expense, current_balance] }},
+                        backgroundColor: ['#FF0000', '#0000FF', '#FFFF00'],
+                        borderColor: ['#FF0000', '#0000FF', '#FFFF00'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        </script>
+    </body>
+
+</html>
